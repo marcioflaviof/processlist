@@ -32,3 +32,11 @@
 [prune]
   go-tests = true
   unused-packages = true
+
+
+[metadata.heroku]
+  root-package = "processlist"
+  go-version = "go1.13.8"
+  install = [ "./cmd/..."]
+  ensure = "false"
+  additional-tools = ["github.com/golang-migrate/migrate"]
