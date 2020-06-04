@@ -5,11 +5,16 @@ import (
 	"log"
 	"net/http"
 	"processlist/database"
+	"processlist/model"
 	"strings"
+
+	"github.com/rs/xid"
 )
 
 //AddProcess adiciona os processos recebidos pelo client
 func AddProcess(w http.ResponseWriter, r *http.Request) {
+
+	var process model.Process
 
 	body := r.Body
 	bytes, err := ioutil.ReadAll(body)
@@ -18,14 +23,22 @@ func AddProcess(w http.ResponseWriter, r *http.Request) {
 		log.Println("[ERROR] Can't read response body", err)
 	}
 
-	log.Println(string(bytes))
-
 	strbytes := strings.Split(string(bytes), ",")
 
 	for _, i := range strbytes {
 
-		database.InsertProcess(i)
+		process.ID = xid.New().String()
+
+		process.Process = i
+
+		err := database.InsertProcess(process)
+
+		if err != nil {
+			log.Println("Database is offline, please try again later")
+		}
 
 	}
+
+	log.Println("All processes have been added")
 
 }

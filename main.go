@@ -1,7 +1,13 @@
 package main
 
-import "processlist/server"
+import (
+	"processlist/database"
+	"processlist/server"
+)
 
 func main() {
+
+	database.CreateClient()
+
 	server.Start()
 }
