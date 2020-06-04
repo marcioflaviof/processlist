@@ -35,11 +35,10 @@
 
 
 [metadata.heroku]
-  root-package = "github.com/marcioflaviof/processlist"
-  go-version = "go1.13.8"
+  root-package = "processlist"
+  go-version = "go1.13.7"
   install = [ "./..."]
   ensure = "false"
-  additional-tools = ["github.com/golang-migrate/migrate"]
 
 [[constraint]]
   name = "go.mongodb.org/mongo-driver"
