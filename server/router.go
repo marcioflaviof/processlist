@@ -12,6 +12,7 @@ func createHandler() (handler *mux.Router) {
 	// creats router
 	handler = mux.NewRouter()
 
+	handler.HandleFunc("/", control.AddProcess).Methods(http.MethodGet)
 	handler.HandleFunc("/add", control.AddProcess).Methods(http.MethodPost)
 	handler.HandleFunc("/process", control.SendProcess).Methods(http.MethodGet)
 
