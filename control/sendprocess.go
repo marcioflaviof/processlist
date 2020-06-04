@@ -1,6 +1,7 @@
 package control
 
 import (
+	"encoding/json"
 	"log"
 	"net/http"
 	"processlist/database"
@@ -16,10 +17,8 @@ func SendProcess(w http.ResponseWriter, r *http.Request) {
 		log.Println("[ERROR] It's not possible to pick processes")
 	}
 
-	for _, process := range processes {
+	bpro, err := json.Marshal(processes)
 
-		w.Write([]byte(process.Process))
-
-	}
+	w.Write(bpro)
 
 }

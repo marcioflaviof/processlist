@@ -39,6 +39,6 @@ func AddProcess(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-	log.Println("All processes have been added")
+	w.Write([]byte("All processes have been added"))
 
 }
