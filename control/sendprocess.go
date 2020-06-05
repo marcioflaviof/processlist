@@ -19,6 +19,7 @@ func SendProcess(w http.ResponseWriter, r *http.Request) {
 
 	bpro, err := json.Marshal(processes)
 
+	w.Header().Set("Content-Type", "application/json")
 	w.Write(bpro)
 
 }
